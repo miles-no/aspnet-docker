@@ -24,6 +24,9 @@ debug:
 	docker run --rm -it $(NAME) /bin/bash
 
 run:
-	docker run --rm $(NAME)
+	docker run --rm -it $(NAME)
+	
+run-d:
+	docker run --rm -d $(NAME)
 	
 release: build push
