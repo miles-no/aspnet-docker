@@ -1,5 +1,6 @@
 NAME = jstclair/docker-hellomvc
 RUNTIME = active
+PORT = 5004
 
 default: build
 
@@ -21,12 +22,12 @@ push:
 	docker push $(NAME)
 
 debug:
-	docker run --rm -it $(NAME) /bin/bash
+	docker run --rm -it -p $(PORT):$(PORT) $(NAME) /bin/bash
 
 run:
-	docker run --rm -it $(NAME)
+	docker run --rm -it -p $(PORT):$(PORT) $(NAME)
 	
 run-d:
-	docker run --rm -d $(NAME)
+	docker run --rm -d -p $(PORT):$(PORT) $(NAME)
 	
 release: build push
