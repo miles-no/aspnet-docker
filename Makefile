@@ -22,7 +22,7 @@ push:
 	docker push $(NAME)
 
 debug:
-	docker run --rm -it -p $(PORT):$(PORT) $(NAME) /bin/bash
+	docker run --rm -it -p $(PORT):$(PORT) --entrypoint=/bin/bash $(NAME)
 
 run:
 	docker run --rm -it -p $(PORT):$(PORT) $(NAME)
