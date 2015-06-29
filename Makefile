@@ -1,5 +1,5 @@
-NAME = jstclair/docker-hellomvc
-RUNTIME = active
+NAME = jstclair/docker-hellomvc-no-mono
+RUNTIME = dnx-coreclr-linux-x64.1.0.0-beta6-12120
 
 default: build
 
