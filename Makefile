@@ -24,9 +24,9 @@ debug:
 	docker run --rm -it $(NAME) /bin/bash
 
 run:
-	docker run --rm -it $(NAME)
+	docker run --rm -it -p=5004:5004 $(NAME)
 	
 run-d:
-	docker run --rm -d $(NAME)
+	docker run --rm -d -p=5004:5004 $(NAME)
 	
 release: build push
