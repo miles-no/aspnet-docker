@@ -47,7 +47,7 @@ make
 _NOTE: I have found that you need to run the app at least once to get the wwwroot folder created._
 
 ```
-dnu restore
+dnu restore -s https://www.myget.org/F/aspnetvnext/api/v2 .
 dnx . kestrel
 make
 ```
