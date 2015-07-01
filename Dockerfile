@@ -1,4 +1,5 @@
-FROM microsoft/aspnet:1.0.0-beta4
+FROM jstclair/jessie-libuv
+
 COPY ./bin/output /app
 WORKDIR /app
 EXPOSE 5004
