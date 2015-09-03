@@ -1,17 +1,25 @@
 # ASPNET Docker example
 
-NOTE: Tested on OSX with DNVM 1.0.0-beta8-15502 / DNX 1.0.0-beta7.coreclr.x64.darwin / 1.0.0-beta7.coreclr.x64.linux
+*NOTE*: Tested on:
 
-This is a small WebApi project to test "natively" running an ASP.NET application without requiring Mono. Instead, we are deploying the `coreclr` runtime for Linux as part of the packaging process.
+* OSX 10.10.5 
+* DNVM 1.0.0-beta8-15502 
+* DNX 1.0.0-beta7.coreclr.x64.darwin 
+* DNX 1.0.0-beta7.coreclr.x64.linux
+
+This is a small WebApi project to test "natively" running an ASP.NET application without requiring Mono. Instead, we are deploying the `coreclr` runtime for Linux as part of the packaging process. 
 
 Advantages:
 
 * Smaller images:
 
 ```
-REPOSITORY                         TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-jstclair/docker-hellomvc-no-mono   latest              f7bd951cea84        4 minutes ago       398.4 MB
-jstclair/docker-hellomvc           latest              716e57ec001f        23 hours ago        741 MB
+REPOSITORY                         CREATED             VIRTUAL SIZE
+jstclair/docker-hellomvc-no-mono   4 minutes ago       398.4 MB
+jstclair/docker-hellomvc           23 hours ago        741 MB
+jstclair/jessie-libuv              9 weeks ago         331.1 MB
+debian/jessie                      11 weeks ago        125.2 MB
+microsoft/aspnet                   12 weeks ago        729.1 MB
 ```
 
 * Less installed on our final image; fewer security issues
@@ -29,7 +37,12 @@ dnvm upgrade -r coreclr -p
 
 Running `dnvm list` should show something like the following:
 
-\\ insert image here
+```
+Active Version              Runtime Arch Location             Alias
+------ -------              ------- ---- --------             -----
+  *    1.0.0-beta7          coreclr x64  ~/.dnx/runtimes      default
+       1.0.0-beta7          coreclr x64  ~/.dnx/runtimes      coreclr-linux-latest
+```
 
 
 2. Publish the project and build a docker image for it:
@@ -39,6 +52,9 @@ make
 ```
 
 The key here is that when we publish our application, we use the `--no-source` and  `--runtime dnx-coreclr-linux-x64.1.0.0-beta7` flags.
+
+*NOTE*: This is based on my custom `jstclair/jessie-libuv` image; you can find the Dockerfile (including the reasons for a custom version, rather than building on the Microsoft ASPNET image) 
+on [Dockerhub](https://hub.docker.com/r/jstclair/jessie-libuv/).
 
 3. Run the docker image:
 
@@ -60,3 +76,7 @@ open http://${IP}:5004/api/values
 ```
 make clean
 ```
+
+# CREDITS
+
+* Makefile originally inspired by [Ben Hall](http://blog.benhall.me.uk/2015/05/using-make-to-manage-docker-image-creation/)
