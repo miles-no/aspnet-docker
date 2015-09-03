@@ -1,8 +1,8 @@
 # ASPNET Docker example
 
-NOTE: Tested on OSX / Mono 4.0.1 (locally installed)
+NOTE: Tested on OSX with DNVM 1.0.0-beta8-15502 / DNX 1.0.0-beta7.coreclr.x64.darwin / 1.0.0-beta7.coreclr.x64.linux
 
-This is a small project to test "natively" running an ASP.NET application without requiring mono. Instead, we are deploying the `coreclr` runtime for Linux as part of the packaging process.
+This is a small WebApi project to test "natively" running an ASP.NET application without requiring Mono. Instead, we are deploying the `coreclr` runtime for Linux as part of the packaging process.
 
 Advantages:
 
@@ -19,24 +19,18 @@ jstclair/docker-hellomvc           latest              716e57ec001f        23 ho
 
 1. [Install ASPNET 5](https://github.com/aspnet/home)
 
-Right now, we still need to install the full Mono-based .NET stack locally; latest `coreclr` still has issues with `dnu restore`
-
-1.a. Download and install the [dnx-coreclr-linux-x64](https://www.myget.org/gallery/aspnetvnext)  
-
-```
-# after downloaded the above to ~/Downloads
-dnvm install ~/Downloads/dnx-coreclr-linux-x64.1.0.0-beta6-12120.nupkg --alias dnx-core-linux
-# now switch back to our original beta6 for mono
-dnvm use 1.0.0-beta6-12120 -r mono -p
-```
-
-2. Upgrade to latest beta of DNX (1.0.0-beta6-12120 at time of writing):
+2. Update and install latest stable versions of DNVM and runtimes
 
 ```
 dnvm upgrade-self
-dnvm upgrade -u
-dnvm list 
+dnvm install latest -r coreclr -OS linux -a coreclr-linux-latest
+dnvm upgrade -r coreclr -p
 ```
+
+Running `dnvm list` should show something like the following:
+
+\\ insert image here
+
 
 2. Publish the project and build a docker image for it:
 
@@ -44,15 +38,7 @@ dnvm list
 make
 ```
 
-_NOTE: I have found that you need to run the app at least once to get the wwwroot folder created._
-
-```
-dnu restore -s https://www.myget.org/F/aspnetvnext/api/v2 .
-dnx . kestrel
-make
-```
-
-The key here is that when we publish our application, we use the `--no-source` and  `--runtime dnx-coreclr-linux-x64.1.0.0-beta6-12120` flags.
+The key here is that when we publish our application, we use the `--no-source` and  `--runtime dnx-coreclr-linux-x64.1.0.0-beta7` flags.
 
 3. Run the docker image:
 
@@ -62,7 +48,14 @@ make run
 
 See the `Makefile` for more options, like `make debug` or `make run-d`
 
-4. Cleanup
+4. Hit the Values endpoint
+
+```
+IP=$(docker-machine ip MACHINE_NAME)
+open http://${IP}:5004/api/values
+```
+
+5. Cleanup
 
 ```
 make clean

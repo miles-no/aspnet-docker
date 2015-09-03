@@ -1,19 +1,24 @@
 NAME = jstclair/docker-hellomvc-no-mono
-RUNTIME = dnx-coreclr-linux-x64.1.0.0-beta6-12120
+RUNTIME = dnx-coreclr-linux-x64.1.0.0-beta7
 PORT = 5004
+CONFIG = Release
 
-default: build
+default: all
 
-build: clean restore publish docker-build
+all: clean restore build publish docker-build
 	
 clean: 
 	rm -rf publish
+	rm -rf bin
 
 restore:
 	dnu restore .
 
+build: 
+	dnu build
+
 publish:
-	dnu publish . --no-source --runtime $(RUNTIME)
+	dnu publish . --no-source --runtime $(RUNTIME) --configuration $(CONFIG)
 
 docker-build:
 	docker build -t $(NAME) .
