@@ -15,12 +15,12 @@ This is a small WebApi project to test "natively" running an ASP.NET application
 
 * Smaller images:
   ```
-  REPOSITORY                         CREATED             VIRTUAL SIZE
-  jstclair/docker-hellomvc-no-mono   4 minutes ago       238.4 MB
-  jstclair/docker-hellomvc           23 hours ago        741 MB
-  jstclair/jessie-libuv              9 weeks ago         175.4 MB
-  debian/jessie                      11 weeks ago        125.2 MB
-  microsoft/aspnet                   12 weeks ago        729.1 MB
+  REPOSITORY                         CREATED             VIRTUAL SIZE 
+  jstclair/docker-hellomvc-no-mono   4 minutes ago       238.4 MB 
+  jstclair/docker-hellomvc           23 hours ago        741 MB 
+  jstclair/jessie-libuv              9 weeks ago         175.4 MB 
+  debian/jessie                      11 weeks ago        125.2 MB 
+  microsoft/aspnet                   12 weeks ago        729.1 MB 
   ```
 * Less installed on our final image (fewer security issues)
 
