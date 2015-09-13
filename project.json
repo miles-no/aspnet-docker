@@ -1,27 +1,25 @@
 {
   "webroot": "wwwroot",
   "version": "1.0.0-*",
-
   "dependencies": {
-    "Microsoft.AspNet.Mvc": "6.0.0-beta7",
-    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta7",
-    "Microsoft.AspNet.StaticFiles": "1.0.0-beta7"
+    "Microsoft.AspNet.Mvc": "6.0.0-beta8-15746",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8-15602",
+    "Microsoft.AspNet.StaticFiles": "1.0.0-beta8-15598"
   },
-
   "commands": {
-    "kestrel": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --config hosting.ini"
+    "kestrel": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --server.urls http://localhost:5004"
   },
-
   "frameworks": {
     "dnxcore50": {}
   },
-
   "exclude": [
     "wwwroot",
     "node_modules",
     "bower_components"
   ],
   "publishExclude": [
+    ".git",
+    ".vscode",
     "node_modules",
     "bower_components",
     "**.xproj",
