@@ -26,9 +26,6 @@ namespace WebAPIApplication
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            // Configure the HTTP request pipeline.
-            app.UseStaticFiles();
-
             // Add MVC to the request pipeline.
             app.UseMvc();
         }
