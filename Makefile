@@ -1,5 +1,5 @@
 NAME = jstclair/docker-hellomvc-no-mono
-RUNTIME = dnx-coreclr-linux-x64.1.0.0-beta8-15654
+RUNTIME = dnx-coreclr-linux-x64.1.0.0-rc1-15838
 PORT = 5004
 CONFIG = Release
 

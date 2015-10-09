@@ -1,7 +1,7 @@
 FROM debian:jessie-backports
 MAINTAINER john.stclair@miles.no
 
-ENV RUNTIME_PACKAGES libuv1 libunwind8 gettext libssl-dev libcurl3-dev zlib1g libc-dev
+ENV RUNTIME_PACKAGES libuv1 libunwind8 gettext libssl-dev libcurl3-dev zlib1g libc-dev base-files
 
 RUN apt-get -qq update \
     && apt-get -qqy install $RUNTIME_PACKAGES \
@@ -12,5 +12,5 @@ RUN apt-get -qq update \
 COPY ./bin/output /app
 WORKDIR /app
 EXPOSE 5004
-ENTRYPOINT ["/app/kestrel"]
+ENTRYPOINT ["/app/approot/kestrel"]
 

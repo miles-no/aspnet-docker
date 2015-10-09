@@ -2,8 +2,8 @@
   "webroot": "wwwroot",
   "version": "1.0.0-*",
   "dependencies": {
-    "Microsoft.AspNet.Mvc": "6.0.0-beta8-15875",
-    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8-15674"
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-16028",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-15767"
   },
   "commands": {
     "kestrel": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --server.urls http://localhost:5004"

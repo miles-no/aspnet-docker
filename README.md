@@ -2,12 +2,12 @@
 
 *NOTE*: Tested on:
 
-* OSX 10.10.5 
-* DNVM 1.0.0-beta8-15502 
-* DNU 1.0.0-beta8-15604 (Darwin x64)
-* DNX 1.0.0-beta8-15604 (Darwin x64) 
-* DNX 1.0.0-beta8-15604 (Linux x64)
-* Docker version 1.8.1, build d12ea79
+* OSX 10.11.0 (El Capitan) 
+* DNVM 1.0.0-rc1-15524 
+* DNU 1.0.0-rc1-15838 (Darwin x64)
+* DNX 1.0.0-rc1-15838 (Darwin x64) 
+* DNX 1.0.0-rc1-15838 (Linux x64)
+* Docker version 1.8.2, build 0a8c2e3
 * docker-machine version 0.4.1 (HEAD)
 
 This is a small WebApi project to test "natively" running an ASP.NET application without requiring Mono. Instead, we are deploying the `coreclr` runtime for Linux as part of the packaging process. 
@@ -18,7 +18,7 @@ This is a small WebApi project to test "natively" running an ASP.NET application
 
   ```
   REPOSITORY                         CREATED             VIRTUAL SIZE 
-  jstclair/docker-hellomvc-no-mono   4 minutes ago       301.6 MB 
+  jstclair/docker-hellomvc-no-mono   4 minutes ago       334.2 MB 
   debian/jessie-backports            11 weeks ago        125.2 MB
   # note: with Mono 
   jstclair/docker-hellomvc           23 hours ago        741 MB
@@ -41,15 +41,15 @@ This is a small WebApi project to test "natively" running an ASP.NET application
   ```
   Active Version              Runtime Arch Location             Alias
   ------ -------              ------- ---- --------             -----
-    *    1.0.0-beta8-15604    coreclr x64  ~/.dnx/runtimes      default
-         1.0.0-beta8-15604    coreclr x64  ~/.dnx/runtimes      coreclr-linux-latest
+    *    1.0.0-rc1-15838      coreclr x64  ~/.dnx/runtimes      default
+         1.0.0-rc1-15838      coreclr x64  ~/.dnx/runtimes      coreclr-linux-latest
   ```
 2. Publish the project and build a docker image for it:
   ```
   make
   ```
   
-  The key here is that when we publish our application, we use the `--no-source` and  `--runtime dnx-coreclr-linux-x64.1.0.0-beta8-15604` flags.
+  The key here is that when we publish our application, we use the `--no-source` and  `--runtime dnx-coreclr-linux-x64.1.0.0-rc1-15838` flags.
   
 3. Run the docker image:
   ```
