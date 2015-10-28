@@ -1,7 +1,7 @@
 FROM debian:jessie-backports
 MAINTAINER john.stclair@miles.no
 
-ENV RUNTIME_PACKAGES libuv1 libunwind8 gettext libssl-dev libcurl3-dev zlib1g libc-dev base-files
+ENV RUNTIME_PACKAGES libuv1 libunwind8 gettext libssl-dev libcurl3-dev zlib1g libicu-dev libc-dev base-files
 
 RUN apt-get -qq update \
     && apt-get -qqy install $RUNTIME_PACKAGES \
